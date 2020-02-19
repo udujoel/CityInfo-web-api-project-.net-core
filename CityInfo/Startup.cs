@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using System;
 
 namespace CityInfo
 {
@@ -28,14 +29,17 @@ namespace CityInfo
                 app.UseExceptionHandler();
             }
 
-            //            app.UseRouting();
-            app.UseMvc();
+            app.UseRouting();
+//            app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    //                    await context.Response.WriteAsync("Hello World!");
+
+                    throw new Exception("Example exception");
+
                 });
             });
         }
